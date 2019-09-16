@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="build/calcite-app.css" />
+  <script src="build/calcite-app.esm.js" type="module"></script>
+  <script src="build/calcite-app.js" nomodule="true"></script>
+  <style>
+    calcite-pick-list-item[disabled] {
+      opacity: .4;
+    }
+  </style>
+</head>
+<body>
+  <calcite-pick-list id="myList" multiple>
+    <calcite-pick-list-item text-heading="String 1" text-description="string 1 desc" value="string1" data-type="string"></calcite-pick-list-item>
+    <calcite-pick-list-item text-heading="String 2" text-description="string 2 desc" value="string2" data-type="string"></calcite-pick-list-item>
+    <calcite-pick-list-item text-heading="String 3" text-description="string 3 desc" value="string3" data-type="string"></calcite-pick-list-item>
+    <calcite-pick-list-item text-heading="Number 1" text-description="number 1 desc" value="number1" data-type="number"></calcite-pick-list-item>
+    <calcite-pick-list-item text-heading="Number 2" text-description="number 2 desc" value="number2" data-type="number"></calcite-pick-list-item>
+    <calcite-pick-list-item text-heading="Number 3" text-description="number 3 desc" value="number3" data-type="number"></calcite-pick-list-item>
+  </calcite-pick-list>
+
+  <script>
+    const myList = document.querySelector("#myList");
+    myList.addEventListener("calcitePickListSelectionChange", event => {
+        myList.querySelectorAll("calcite-pick-list-item").forEach( item => {
+            item.removeAttribute("disabled");
+        });
+        event.detail.forEach( selectedItem => {  
+            const type = selectedItem.dataset.type;
+            myList.querySelectorAll(`[data-type="${type}"]`).forEach( item => {
+                if ( item.value !== selectedItem.value ) {
+                    item.setAttribute("disabled", "");
+                }
+            });
+        });
+    });
+  </script>
+</body>
+</html>

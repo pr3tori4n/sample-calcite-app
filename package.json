@@ -1,0 +1,19 @@
+{
+  "name": "pickListDemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "copyFiles node_modules/@esri/calcite-app-components/dist/calcite-app/* build -E -f",
+    "start": "serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@esri/calcite-app-components": "^2.3.0",
+    "copyfiles": "^2.1.1",
+    "serve": "^11.1.0"
+  }
+}
